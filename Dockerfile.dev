@@ -2,13 +2,16 @@
 FROM node:20-alpine
 
 # Work directory
-WORKDIR /usr/src/app
+WORKDIR /app
 
 # Install some dependencies
 COPY package.json .
 RUN npm install -g @angular/cli
 RUN npm install
 COPY . .
+
+# Build 
+RUN npm run build --prod
 
 # Default Command
 CMD ["ng", "serve", "--host", "0.0.0.0"]
